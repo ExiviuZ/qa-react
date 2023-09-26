@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/qa-react/static/css/main.248dec39.css",
+    "main.js": "/qa-react/static/js/main.d5b9de38.js",
+    "index.html": "/qa-react/index.html",
+    "main.248dec39.css.map": "/qa-react/static/css/main.248dec39.css.map",
+    "main.d5b9de38.js.map": "/qa-react/static/js/main.d5b9de38.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.248dec39.css",
+    "static/js/main.d5b9de38.js"
+  ]
+}
