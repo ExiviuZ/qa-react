@@ -1,87 +1,70 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import "./index.css";
 
-export default function App() {
+const questions = [
+  {
+    id: 1,
+    question: "What language is react based on?",
+    answer: "Javascript",
+  },
+  {
+    id: 2,
+    question: "What are the building blocks of react apps?",
+    answer: "Components",
+  },
+  {
+    id: 3,
+    question: "What's the name of the syntax we use to describe a UI in React?",
+    answer: "JSX",
+  },
+  {
+    id: 4,
+    question: "How to pass data from parent to child components?",
+    answer: "Props",
+  },
+  {
+    id: 5,
+    question: "How to give components memory?",
+    answer: "useState",
+  },
+  {
+    id: 6,
+    question:
+      "What do we call an input element that is completely synchronised with state?",
+    answer: "Controlled Elements",
+  },
+];
+
+function App() {
   return (
     <>
-      <h1>Date Counter 📅</h1>
-      <Counter />
+      <h1>❔ React Q/A - Flash Cards 🃏</h1>
+      <FlashCards />
     </>
   );
 }
 
-function Counter() {
-  const [step, setStep] = useState(1);
+function FlashCards() {
+  const [currentId, setCurrentId] = useState("");
+  function handleClick(id) {
+    currentId === id ? setCurrentId(null) : setCurrentId(id);
+  }
   return (
     <>
-      <Step stepObj={{ step, setStep }} />
-      <Count stepObj={{ step, setStep }} />
+      <ul className="flash-cards">
+        {questions.map((card) => {
+          return (
+            <li
+              className={`card ${card.id === currentId ? "selected" : ""} `}
+              onClick={() => handleClick(card.id)}
+            >
+              {card.id === currentId ? card.answer : card.question}
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }
 
-function Step({ stepObj: { setStep, step } }) {
-  return (
-    <div>
-      <input
-        max={10}
-        min={1}
-        value={0}
-        type="range"
-        onChange={(e) => setStep(e.target.value)}
-      />
-      <span className="range-text" style={{ fontWeight: 500 }}>
-        {step}
-      </span>
-    </div>
-  );
-}
-
-function Count({ stepObj: { step, setStep } }) {
-  const [count, setCount] = useState(0);
-  const date = new Date();
-  date.setDate(date.getDate() + count);
-  console.log(date.toDateString());
-  function addCount() {
-    setCount(count + Number(step));
-  }
-  function reduceCount() {
-    setCount(count - Number(step));
-  }
-  function handleReset() {
-    setStep(1);
-    setCount(0);
-  }
-  return (
-    <>
-      <div>
-        <button onClick={reduceCount}>🔻</button>
-        <input
-          value={count}
-          type="number"
-          onChange={(e) => setCount(Number(e.target.value))}
-        />
-        <button onClick={addCount}>🔺</button>
-      </div>
-      <p className="date">
-        {count === 0
-          ? `Today is ${date.toDateString()}`
-          : count === 1
-          ? `${count} day from today is ${date.toDateString()}`
-          : count === -1
-          ? `${Math.abs(count)} day ago was ${date.toDateString()}`
-          : count > 1
-          ? `${count} days from now is ${date.toDateString()}`
-          : count < 1
-          ? `${Math.abs(count)} days ago was ${date.toDateString()}`
-          : ""}
-      </p>
-      {count !== 0 ? (
-        <button onClick={handleReset} className="reset">
-          Reset
-        </button>
-      ) : (
-        ""
-      )}
-    </>
-  );
-}
+export default App;
