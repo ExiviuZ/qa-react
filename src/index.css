@@ -1,0 +1,52 @@
+*,*::before,*:after{
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: calc(1em + 0.5rem);
+    min-height: 100vh;
+}
+
+#root {
+    padding: 2rem;
+    width: 95%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.accordion {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.accordion-item{
+    box-shadow: 0px 0px 10px 5px hsla(0, 0%, 50%, 0.1);
+}
+
+.title-container{
+    cursor: pointer;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.title-container .title{
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: cyan;
+}
+
+.text-container{
+    padding: 2rem;
+    padding-top: 0;
+}
